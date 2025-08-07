@@ -4,27 +4,12 @@ import json
 
 class AgentEvaluator:
     def __init__(self):
+        # Define which criteria each agent type is evaluated on
         self.evaluation_criteria = {
-            "incumbents": {
-                "completeness": "Does the analysis cover main competitors?",
-                "specificity": "Are specific companies and features mentioned?",
-                "insight_quality": "Does it provide actionable insights?"
-            },
-            "funding": {
-                "relevance": "Is the funding analysis relevant to the product space?",
-                "recency": "Does it mention recent funding trends?",
-                "investor_perspective": "Does it consider investor viewpoint?"
-            },
-            "growth": {
-                "market_sizing": "Does it address market size?",
-                "growth_trends": "Are growth trends discussed?",
-                "revenue_potential": "Is revenue opportunity assessed?"
-            },
-            "decision": {
-                "synthesis": "Does it properly combine all inputs?",
-                "clarity": "Is the recommendation clear?",
-                "reasoning": "Are the reasons well-justified?"
-            }
+            "incumbents": ["completeness", "specificity", "insight_quality"],
+            "funding": ["relevance", "recency", "investor_perspective"],
+            "growth": ["market_sizing", "growth_trends", "revenue_potential"],
+            "decision": ["synthesis", "clarity", "reasoning"]
         }
     
     def evaluate_agent_response(self, agent_name: str, response: Dict[str, Any]) -> Dict[str, Any]:
@@ -39,7 +24,7 @@ class AgentEvaluator:
         scores = {}
         criteria = self.evaluation_criteria[agent_key]
         
-        for criterion, description in criteria.items():
+        for criterion in criteria:
             scores[criterion] = self._score_criterion(analysis, criterion, agent_key)
         
         overall_score = sum(scores.values()) / len(scores)

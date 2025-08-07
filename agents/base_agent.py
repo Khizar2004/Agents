@@ -46,10 +46,19 @@ class BaseAgent:
             }
     
     def _calculate_confidence(self, analysis: str) -> float:
-        """Simple confidence calculation based on response length and keywords"""
+        """
+        Simple confidence calculation based on response length and keywords.
+        
+        This is a heuristic approach that combines:
+        1. Length-based scoring (longer responses tend to be more detailed)
+        2. Keyword analysis (academic/research terms vs uncertainty terms)
+
+        """
         if not analysis or len(analysis) < 50:
             return 0.3
         
+        # Simple keyword-based confidence indicators
+        # This is a basic heuristic - could be improved with semantic analysis
         confidence_keywords = ["likely", "evidence", "data", "research", "analysis"]
         uncertainty_keywords = ["unclear", "uncertain", "difficult", "limited"]
         

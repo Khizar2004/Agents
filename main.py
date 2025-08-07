@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Market Research System - Main Execution Script
 
@@ -17,7 +16,7 @@ from core import MarketResearchSystem
 
 
 def main():
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 2:      # correct user if they do not provide a product idea
         print("Usage: python main.py \"your product idea\"")
         print("\nExample:")
         print("python main.py \"AI-powered fitness app\"")
@@ -37,10 +36,10 @@ def main():
         with open(output_file, 'w') as f:
             json.dump(results, f, indent=2)
         
-        print(f"\n💾 Results saved to: {output_file}")
+        print(f"\n Results saved to: {output_file}")
         
     except Exception as e:
-        print(f"\n❌ Error: {str(e)}")
+        print(f"\n Error: {str(e)}")
         sys.exit(1)
 
 

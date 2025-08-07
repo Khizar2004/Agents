@@ -51,7 +51,7 @@ class DecisionAgent(BaseAgent):
                     {"role": "system", "content": self.system_prompt},
                     {"role": "user", "content": combined_prompt}
                 ],
-                temperature=0.5,
+                temperature=0.5,   # Lower temperature for more consistent decisions
                 max_tokens=400
             )
             

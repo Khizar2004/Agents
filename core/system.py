@@ -21,7 +21,7 @@ class MarketResearchSystem:
     
     def research_product_idea(self, product_idea: str) -> Dict[str, Any]:
         """Run complete market research analysis"""
-        print(f"\n🔍 Researching product idea: {product_idea}")
+        print(f"\n Researching product idea: {product_idea}")
         print("=" * 60)
         
         results = {}
