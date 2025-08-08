@@ -128,14 +128,6 @@ System Evaluation
 Results saved to: research_results_AI-powered_fitness_a.json
 ```
 
-## Configuration
-
-Edit `config.py` to customize:
-- OpenAI model selection (default: gpt-3.5-turbo)
-- Agent timeout settings (default: 30 seconds)
-- Evaluation thresholds (default: 7.0/10 for "good" quality)
-- Response length limits (default: 500 tokens)
-
 ## Output Files
 
 Each research session generates a JSON file containing:
@@ -151,28 +143,7 @@ Each research session generates a JSON file containing:
 - Final judgment with reasoning on product viability
 - No LangChain/LlamaIndex (pure OpenAI API)
 - Solid evaluation system with scoring and metrics
-- Clean, simple code under 500 lines total
 - Working end-to-end with real AI analysis
-
-## Dependencies
-
-- `openai>=1.0.0` - OpenAI API client
-- `python-dotenv>=1.0.0` - Environment variable management
-
-## Troubleshooting
-
-**API Key Issues:**
-- Ensure your `.env` file contains a valid OpenAI API key
-- Check that the key starts with `sk-`
-- Verify you have sufficient API credits
-
-**Import Errors:**
-- Make sure all dependencies are installed: `pip install -r requirements.txt`
-- Ensure you're running from the project root directory
-
-**Connection Issues:**
-- Check your internet connection
-- Verify OpenAI API is accessible from your network
 
 ## The 4 Agents
 
@@ -196,7 +167,7 @@ Each research session generates a JSON file containing:
 - **Focus**: Combines all research to make investment recommendation
 - **Output**: Final decision (Good/Neutral/Poor) with detailed reasoning
 
-## 📊 Built-in Evaluation System
+## Built-in Evaluation System
 
 The system includes comprehensive evaluation across multiple criteria:
 
@@ -206,7 +177,7 @@ The system includes comprehensive evaluation across multiple criteria:
 - **Synthesis**: How well the decision agent combines research
 - **Overall Performance**: System-wide scoring and recommendations
 
-## 🚀 Quick Start
+## Quick Start
 
 1. **Setup Environment:**
    ```bash
@@ -232,7 +203,7 @@ The system includes comprehensive evaluation across multiple criteria:
    python main.py "sustainable food delivery service"
    ```
 
-## 📈 Sample Output
+## Sample Output
 
 ```
 🔍 Researching product idea: AI-powered fitness app
