@@ -2,29 +2,179 @@
 
 A 4-agent system for comprehensive product idea market research. Built without LangChain or LlamaIndex, using direct OpenAI API calls for simplicity and transparency.
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 /Agents
 ├── main.py              # Main execution script
 ├── config.py            # Configuration settings
 ├── requirements.txt     # Dependencies
-├── .env                # Environment variables (API keys)
+├── .env                 # Environment variables (API keys)
 ├── /agents             # Agent implementations
-│   ├── __init__.py
 │   ├── base_agent.py   # Base agent class
 │   ├── incumbents_agent.py   # Competitor analysis
 │   ├── funding_agent.py      # Funding research
 │   ├── growth_agent.py       # Market growth analysis
 │   └── decision_agent.py     # Final recommendation
-├── /core               # Core system components  
-│   ├── __init__.py
-│   ├── system.py       # Main system orchestrator
-│   └── evaluator.py    # Agent evaluation system
-└── /results            # Generated research reports (JSON)
+└── /core               # Core system components  
+    ├── system.py       # Main system orchestrator
+    └── evaluator.py    # Agent evaluation system
 ```
 
-## 🤖 The 4 Agents
+## The 4 Agents
+
+### 1. IncumbentsAgent
+- **Purpose**: Competitive landscape analysis
+- **Focus**: Existing competitors, features, market positioning, strengths/weaknesses
+- **Output**: Detailed competitor analysis with actionable insights
+
+### 2. FundingAgent 
+- **Purpose**: Investment and funding research
+- **Focus**: Recent funding rounds, investor sentiment, valuation trends, VC attractiveness
+- **Output**: Funding landscape analysis with investor perspective
+
+### 3. GrowthAgent
+- **Purpose**: Market growth and revenue analysis  
+- **Focus**: Market size, growth rates, revenue potential, economic factors
+- **Output**: Quantitative growth assessment with market dynamics
+
+### 4. DecisionAgent
+- **Purpose**: Synthesis and final recommendation
+- **Focus**: Combines all research to make investment recommendation
+- **Output**: Final decision (Good/Neutral/Poor) with detailed reasoning
+
+## Built-in Evaluation System
+
+The system includes comprehensive evaluation across multiple criteria:
+
+- **Completeness**: Coverage of key research areas
+- **Specificity**: Concrete details vs generic statements  
+- **Insight Quality**: Depth of analysis and actionable insights
+- **Synthesis**: How well the decision agent combines research
+- **Overall Performance**: System-wide scoring and recommendations
+
+## Setup and Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- OpenAI API key
+
+### Installation Steps
+
+1. **Clone or download the project**
+   ```bash
+   cd Agents
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configure your API key**
+   
+   Create a `.env` file in the project root:
+   ```bash
+   touch .env
+   ```
+   
+   Add your OpenAI API key to the `.env` file:
+   ```
+   OPENAI_API_KEY=sk-your-actual-api-key-here
+   ```
+   
+   **Important**: Replace `sk-your-actual-api-key-here` with your actual OpenAI API key. Keep this file secure and never commit it to version control.
+
+## Usage
+
+### Basic Usage
+```bash
+python main.py "your product idea"
+```
+
+### Examples
+```bash
+python main.py "AI-powered fitness app"
+python main.py "blockchain-based voting system"
+python main.py "sustainable food delivery service"
+```
+
+### Sample Output
+```
+Researching product idea: AI-powered fitness app
+============================================================
+
+1. Analyzing Competitors...
+   Analysis: Main competitors include Fitbit, MyFitnessPal, Peloton...
+   Confidence: 0.9
+
+2. Researching Funding Landscape...
+   Analysis: Recent funding rounds show strong investor interest...
+   Confidence: 0.9
+
+3. Evaluating Growth Potential...  
+   Analysis: Market expected to reach $15.96B by 2027...
+   Confidence: 0.9
+
+4. Making Final Recommendation...
+   Recommendation: Good
+   Reasoning: Strong market demand, favorable funding environment...
+   Confidence: 0.9
+
+System Evaluation
+   Overall Score: 8.0/10
+   Performance: Excellent
+
+Results saved to: research_results_AI-powered_fitness_a.json
+```
+
+## Configuration
+
+Edit `config.py` to customize:
+- OpenAI model selection (default: gpt-3.5-turbo)
+- Agent timeout settings (default: 30 seconds)
+- Evaluation thresholds (default: 7.0/10 for "good" quality)
+- Response length limits (default: 500 tokens)
+
+## Output Files
+
+Each research session generates a JSON file containing:
+- **Complete research data** from all 4 agents
+- **Agent evaluation scores** across multiple criteria
+- **System performance metrics** and recommendations
+- **Structured results** for easy analysis and reporting
+
+## Assignment Requirements Met
+
+- 4 specialized agents (Incumbents, Funding, Growth, Decision)
+- 3 core research areas (competitors, funding, growth)
+- Final judgment with reasoning on product viability
+- No LangChain/LlamaIndex (pure OpenAI API)
+- Solid evaluation system with scoring and metrics
+- Clean, simple code under 500 lines total
+- Working end-to-end with real AI analysis
+
+## Dependencies
+
+- `openai>=1.0.0` - OpenAI API client
+- `python-dotenv>=1.0.0` - Environment variable management
+
+## Troubleshooting
+
+**API Key Issues:**
+- Ensure your `.env` file contains a valid OpenAI API key
+- Check that the key starts with `sk-`
+- Verify you have sufficient API credits
+
+**Import Errors:**
+- Make sure all dependencies are installed: `pip install -r requirements.txt`
+- Ensure you're running from the project root directory
+
+**Connection Issues:**
+- Check your internet connection
+- Verify OpenAI API is accessible from your network
+
+## The 4 Agents
 
 ### 1. **IncumbentsAgent**
 - **Purpose**: Competitive landscape analysis
@@ -110,42 +260,10 @@ The system includes comprehensive evaluation across multiple criteria:
    Performance: Excellent ⭐
 ```
 
-## 🔧 Configuration
-
-Edit `config.py` to customize:
-- OpenAI model selection
-- Agent timeout settings  
-- Evaluation thresholds
-- Response length limits
-
-## 📁 Output Files
+## Output Files
 
 Each research session generates:
 - **JSON Report**: Complete research data with evaluation scores
 - **Structured Results**: Agent findings, recommendations, confidence scores
 - **Performance Metrics**: System evaluation and improvement suggestions
 
-## 🎯 Assignment Requirements Met
-
-✅ **4 specialized agents** (Incumbents, Funding, Growth, Decision)  
-✅ **3 research areas** (competitors, funding, growth)  
-✅ **Final judgment** with reasoning on product viability  
-✅ **No LangChain/LlamaIndex** (pure OpenAI API)  
-✅ **Solid evaluation system** with scoring and metrics  
-✅ **Clean, simple code** under 500 lines total  
-✅ **Working end-to-end** with real AI analysis
-
-## 📋 Dependencies
-
-- `openai>=1.0.0` - OpenAI API client
-- `python-dotenv>=1.0.0` - Environment variable management
-
-## 🏃‍♂️ Development
-
-The modular structure makes it easy to:
-- Add new agent types
-- Modify evaluation criteria  
-- Extend research capabilities
-- Customize output formats
-
-Each agent is self-contained and follows the same interface pattern for easy maintenance and testing.
